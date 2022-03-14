@@ -1,0 +1,63 @@
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  # name: bahmni-aws-ingress-class
+  name: bahmni-nginx-ingress-class
+  annotations:
+    ingressclass.kubernetes.io/is-default-class: 'true'
+spec:
+  # controller: ingress.k8s.aws/alb
+  controller: k8s.io/ingress-nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bahmni-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: bahmni.k8s
+      http:
+        paths:
+          - path: /bahmni
+            pathType: Prefix
+            backend:
+              service:
+                name: bahmni-web
+                port:
+                  number: 8091
+
+          - path: /bahmni_config
+            pathType: Prefix
+            backend:
+              service:
+                name: bahmni-web
+                port:
+                  number: 8091
+
+          - path: /openmrs
+            pathType: Prefix
+            backend:
+              service:
+                name: openmrs
+                port:
+                  number: 8080
+
+          - path: /openelis
+            pathType: Prefix
+            backend:
+              service:
+                name: openelis
+                port:
+                  number: 8052
+
+    - host: erp-bahmni.k8s
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: odoo
+                port:
+                  number: 8069
