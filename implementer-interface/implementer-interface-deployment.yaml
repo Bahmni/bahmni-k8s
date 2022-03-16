@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: implementer-interface
+    environment: dev
+  name: implementer-interface
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: implementer-interface
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: implementer-interface
+        environment: dev
+    spec:
+      containers:
+        - image: bahmni/implementer-interface:latest
+          name: implementer-interface
+          resources: {}
+      restartPolicy: Always
