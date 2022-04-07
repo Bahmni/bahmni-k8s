@@ -10,11 +10,34 @@
 
 Note: You can also run minikube without using docker. Look
 [here](https://minikube.sigs.k8s.io/docs/drivers/).
+### Setting up minikube on linux
+
+Docker running on Linux OS with a modern enough kernel doesn't need hardware virtualization support. The OS will be plenty enough for docker.
+
+Some additional setup steps for Linux:
+
+1. Install Conntrack
+
+    `sudo apt-get install conntrack` [for ubuntu]
+
+2. `sudo mv /home/beehyv/.kube /home/beehyv/.minikube $HOME`
+
+3. `sudo chown -R $USER $HOME/.kube $HOME/.minikube`
+
+**Note**: To resolve HOST_JUJU_LOCK_PERMISSION error:
+
+`sudo sysctl fs.protected_regular=0`
+
+
 
 ## Start minikube with decent resources
 
 ```
 minikube start --driver=docker --memory 7000 --cpus=4
+```
+For Linux:
+```
+sudo minikube start --driver=none --memory=7000 --cpus=4
 ```
 
 you should see
