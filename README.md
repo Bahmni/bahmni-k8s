@@ -20,7 +20,7 @@ Some additional setup steps for Linux:
 
     `sudo apt-get install conntrack` [for ubuntu]
 
-2. `sudo mv /home/beehyv/.kube /home/beehyv/.minikube $HOME`
+2. `sudo mv /home/$USER/.kube /home/$USER/.minikube $HOME`
 
 3. `sudo chown -R $USER $HOME/.kube $HOME/.minikube`
 
