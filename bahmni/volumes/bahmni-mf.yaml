@@ -25,4 +25,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: '/mnt/bahmni/bahmni-mf'
+    path: '/Users/bahmni/bahmni-mf'

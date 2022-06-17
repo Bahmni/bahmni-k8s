@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bahmni-lab
+    environment: dev
+  name: bahmni-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bahmni-lab
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bahmni-lab
+        environment: dev
+    spec:
+      containers:
+        - image: bahmni/bahmni-lab:latest
+          name: bahmni-lab
+          resources: {}
+      restartPolicy: Always

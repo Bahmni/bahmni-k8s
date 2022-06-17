@@ -19,7 +19,7 @@ spec:
         environment: dev
     spec:
       containers:
-        - image: bahmni/bahmni-web:latest
+        - image: bahmniindiadistro/bahmni-web:1.0.0-23
           name: bahmni-web
           resources: {}
           volumeMounts:

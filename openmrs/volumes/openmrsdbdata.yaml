@@ -25,4 +25,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: '/mnt/bahmni/openmrsdbdata'
+    path: '/Users/bahmni/openmrsdbdata'

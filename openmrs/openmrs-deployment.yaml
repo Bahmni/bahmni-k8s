@@ -32,6 +32,10 @@ spec:
               value: password
             - name: DB_USERNAME
               value: openmrs-user
+            - name: DB_ROOT_USERNAME
+              value: root
+            - name: DB_ROOT_PASSWORD
+              value: adminAdmin!123
             - name: DEBUG
               value: 'true'
             - name: MODULE_WEB_ADMIN
@@ -50,24 +54,24 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              memory: "4Gi"
+              memory: '4Gi'
             limits:
-              memory: "5Gi"
-          # volumeMounts:
-          #   - mountPath: /usr/local/tomcat/.OpenMRS/modules
-          #     name: openmrs-data
-          #   - mountPath: /home/bahmni/patient_images
-          #     name: openmrs-patient-images
-          #   - mountPath: /home/bahmni/document_images
-          #     name: openmrs-document-images
+              memory: '5Gi'
+          volumeMounts:
+            #   - mountPath: /usr/local/tomcat/.OpenMRS/modules
+            #     name: openmrs-data
+            #   - mountPath: /home/bahmni/patient_images
+            #     name: openmrs-patient-images
+            - mountPath: /home/bahmni/document_images
+              name: openmrs-document-images
       restartPolicy: Always
-      # volumes:
-      #   - name: openmrs-data
-      #     persistentVolumeClaim:
-      #       claimName: openmrs-data-pvc
-      #   - name: openmrs-patient-images
-      #     persistentVolumeClaim:
-      #       claimName: openmrs-patient-images-pvc
-      #   - name: openmrs-document-images
-      #     persistentVolumeClaim:
-      #       claimName: openmrs-document-images-pvc
+      volumes:
+        #   - name: openmrs-data
+        #     persistentVolumeClaim:
+        #       claimName: openmrs-data-pvc
+        #   - name: openmrs-patient-images
+        #     persistentVolumeClaim:
+        #       claimName: openmrs-patient-images-pvc
+        - name: openmrs-document-images
+          persistentVolumeClaim:
+            claimName: openmrs-document-images-pvc

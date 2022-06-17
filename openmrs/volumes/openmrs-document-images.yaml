@@ -25,4 +25,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: '/mnt/bahmni/openmrs-document-images'
+    path: '/Users/bahmni/openmrs-document-images'

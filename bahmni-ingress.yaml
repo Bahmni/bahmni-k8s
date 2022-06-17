@@ -35,21 +35,68 @@ spec:
                 port:
                   number: 8080
 
-          - path: /openelis
+          - path: /lab
             pathType: Prefix
             backend:
               service:
-                name: openelis
+                name: bahmni-lab
                 port:
-                  number: 8052
-
-    - host: erp-bahmni.k8s
+                  number: 8090
+          - path: /document_images
+            pathType: Prefix
+            backend:
+              service:
+                name: document-server
+                port:
+                  number: 8099
+          - path: /openmrs/auth
+            pathType: Exact
+            backend:
+              service:
+                name: document-server
+                port:
+                  number: 8099
+          - path: /summary
+            pathType: Exact
+            backend:
+              service:
+                name: document-server
+                port:
+                  number: 8099
+          - path: /foo
+            pathType: Prefix
+            backend:
+              service:
+                name: document-server
+                port:
+                  number: 8099
+    - host: lab.bahmni.k8s
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: odoo
+                name: bahmni-lab
                 port:
-                  number: 8069
+                  number: 8090
+    - host: patient-docs.bahmni.k8s
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: document-server
+                port:
+                  number: 8099
+    - host: ef9f-122-169-1-37.ngrok.io
+      http:
+        paths:
+          - path: /openmrs
+            pathType: Prefix
+            backend:
+              service:
+                name: openmrs
+                port:
+                  number: 8080

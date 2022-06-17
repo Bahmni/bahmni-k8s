@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bahmni-lab
+spec:
+  ports:
+    - name: '8090'
+      port: 8090
+      targetPort: 80
+  selector:
+    app: bahmni-lab
+    environment: dev
+  type: NodePort
