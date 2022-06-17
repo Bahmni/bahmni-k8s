@@ -36,7 +36,7 @@ function auth(request) {
         request.sendHeader()
         request.send(`Access granted`)
         request.finish()
-      }
+      } else request.return(401)
     } else request.return(res.status, res.body)
   })
 }
