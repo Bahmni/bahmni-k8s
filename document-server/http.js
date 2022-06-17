@@ -8,20 +8,10 @@ async function authWithFetch(r) {
   r.headersOut[
     'x-api-url'
   ] = `http://${r.headersIn.host}/openmrs/ws/rest/v1/session`
-  // let response = ngx
-  //   .fetch(`http://${r.headersIn.host}/openmrs/ws/rest/v1/session`)
-  //   .catch(error => {
-  //     r.headersOut['x-error'] = 'something went wrong'
-  //   })
 
-  let response = await ngx
-    // .fetch(`http://${r.headersIn.host}/openmrs/ws/rest/v1/session`)
-    // .fetch(`http://openmrs:8080/openmrs/ws/rest/v1/session`)
-    .fetch(
-      `http://openmrs.default.svc.cluster.local:8080/openmrs/ws/rest/v1/session`,
-    )
-  // let body = repose then(reply => reply.text())
-  // .catch(e => r.return(501, e.message))
+  let response = await ngx.fetch(
+    `http://openmrs.default.svc.cluster.local:8080/openmrs/ws/rest/v1/session`,
+  )
 
   r.status = 200
   r.headersOut['Content-Type'] = 'text/plain; charset=utf-8'
@@ -34,9 +24,6 @@ async function authWithFetch(r) {
 
 function auth(request) {
   request.subrequest('/openmrs/session', {method: 'GET'}, function (res) {
-    // request.contentType = res.contentType
-    // request.return(res.status, res.body)
-
     request.error(`status from openmrs/session ${res.status}`)
     if (res.status === 200) {
       var jsonData = JSON.parse(res.responseBody)
