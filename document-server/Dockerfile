@@ -4,4 +4,4 @@ RUN apt-get --assume-yes install vim
 RUN apt-get --assume-yes install nginx-module-njs
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY http.js /etc/nginx/conf.d
+COPY njs.js /etc/nginx/conf.d
